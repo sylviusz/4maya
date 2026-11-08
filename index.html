@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilet na 2. Randkę 🎟️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffe6ea 0%, #ffc0cb 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      padding: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      margin: auto;
+    }
+
+    h1 {
+      color: #d81b60;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    /* Przyciski Krok 1 */
+    .btn-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 15px;
+      margin-top: 25px;
+      min-height: 60px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    .btn-yes {
+      background-color: #4CAF50;
+      color: white;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    }
+
+    .btn-no {
+      background-color: #f44336;
+      color: white;
+      box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
+      position: relative;
+      touch-action: none;
+    }
+
+    /* Krok 2: Formularz i Animacja */
+    .hidden {
+      display: none !important;
+    }
+
+    .heart-animation {
+      font-size: 55px;
+      animation: heartbeat 0.9s infinite alternate;
+      margin-bottom: 10px;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.25); }
+    }
+
+    .form-group {
+      text-align: left;
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: #333;
+      background: #fdf2f4;
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .checkbox-item:hover {
+      background: #fce4e8;
+    }
+
+    .checkbox-item input {
+      width: 18px;
+      height: 18px;
+      accent-color: #d81b60;
+      flex-shrink: 0;
+    }
+
+    .custom-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #ffd1dc;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+      margin-top: 5px;
+    }
+
+    .custom-input:focus {
+      border-color: #d81b60;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #d81b60;
+      color: white;
+      margin-top: 15px;
+    }
+
+    #success-message {
+      color: #d81b60;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- KROK 1: Pytanie początkowe -->
+    <div id="step-1">
+      <div style="font-size: 45px; margin-bottom: 10px;">🎟️</div>
+      <h1>Czy idziemy na 2. randkę?</h1>
+      <p style="color: #666; font-size: 15px;">Wybierz jedyną właściwą opcję:</p>
+      <div class="btn-container">
+        <button class="btn btn-yes" id="btn-yes">TAK! 😍</button>
+        <button class="btn btn-no" id="btn-no">Nie 😢</button>
+      </div>
+    </div>
+
+    <!-- KROK 2: Ankieta po kliknięciu TAK -->
+    <div id="step-2" class="hidden">
+      <div class="heart-animation">💖</div>
+      <h1>Wiedziałem! 🥰</h1>
+      <p style="color: #666; font-size: 14px; margin-bottom: 5px;">Zaznacz, na co masz ochotę (możesz kilka!):</p>
+      
+      <!-- TUTAJ WKLEJ LINK ZE SWOJEGO FORMSPREE -->
+      <form id="date-form" action="https://formspree.io/f/mjyydnlb" method="POST">
+        <div class="form-group">
+          <label class="checkbox-item">
+            <input type="checkbox" name="pomysly[]" value="Mecz Hokeja">
+            🏒 Mecz hokeja
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="pomysly[]" value="Łyżwy">
+            ⛸️ Wspólne łyżwy
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="pomysly[]" value="Spacer i gorąca czekolada">
+            ☕ Spacer + gorąca czekolada / grzaniec
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="pomysly[]" value="Bilard albo Kręgle">
+            🎱 Bilard albo kręgle
+          </label>
+          
+          <div style="margin-top: 6px;">
+            <label style="font-size: 13px; color: #555; font-weight: bold; display: block; margin-bottom: 2px;">
+              💡 Masz zupełnie inny pomysł?
+            </label>
+            <input type="text" name="inny_pomysl" class="custom-input" placeholder="Wpisz tutaj swoją propozycję...">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-submit">Zatwierdź propozycje 💌</button>
+      </form>
+    </div>
+
+    <!-- KROK 3: Komunikat po wysłaniu -->
+    <div id="step-3" class="hidden">
+      <div style="font-size: 55px; margin-bottom: 15px;">🎉</div>
+      <p id="success-message">Zgłoszenie przyjęte!<br>Zaraz biorę się za organizację! ❤️</p>
+    </div>
+  </div>
+
+  <script>
+    const btnNo = document.getElementById('btn-no');
+    const btnYes = document.getElementById('btn-yes');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const form = document.getElementById('date-form');
+
+    // Mechanizm uciekającego przycisku NIE
+    function moveButton(e) {
+      if(e.type === 'touchstart') e.preventDefault();
+      
+      btnNo.style.position = 'fixed';
+      
+      const padding = 20;
+      const maxX = window.innerWidth - btnNo.offsetWidth - padding;
+      const maxY = window.innerHeight - btnNo.offsetHeight - padding;
+      
+      const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+      
+      btnNo.style.left = `${randomX}px`;
+      btnNo.style.top = `${randomY}px`;
+    }
+
+    btnNo.addEventListener('mouseenter', moveButton);
+    btnNo.addEventListener('touchstart', moveButton);
+    btnNo.addEventListener('click', moveButton);
+
+    // Generator wesołego dźwięku (Web Audio API)
+    function playHappySound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+        
+        notes.forEach((freq, index) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + index * 0.1);
+          
+          gain.gain.setValueAtTime(0.2, ctx.currentTime + index * 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (index * 0.1) + 0.35);
+          
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          
+          osc.start(ctx.currentTime + index * 0.1);
+          osc.stop(ctx.currentTime + (index * 0.1) + 0.35);
+        });
+      } catch (e) {
+        console.log("Audio blocked/unsupported");
+      }
+    }
+
+    // Kliknięcie TAK
+    btnYes.addEventListener('click', () => {
+      playHappySound();
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+    });
+
+    // Wysłanie formularza przez Fetch API do Formspree
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.innerText = "Zapisuję wybór...";
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          step2.classList.add('hidden');
+          step3.classList.remove('hidden');
+        } else {
+          alert('Wystąpił mały problem, spróbuj jeszcze raz!');
+          submitBtn.innerText = "Zatwierdź propozycje 💌";
+          submitBtn.disabled = false;
+        }
+      } catch (error) {
+        alert('Błąd sieciowy. Sprawdź połączenie i spróbuj ponownie!');
+        submitBtn.innerText = "Zatwierdź propozycje 💌";
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
